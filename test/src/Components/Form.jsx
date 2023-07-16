@@ -39,7 +39,7 @@ const Form = () => {
       </p>
       <form
         onSubmit={onSubmit}
-        className="flex flex-col items-center justify-center p-10 w-1/2"
+        className="flex flex-col items-center justify-center p-10 w-full"
       >
               <textarea
                   value={text}
