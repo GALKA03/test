@@ -31,13 +31,17 @@ const Form = () => {
     }
     };
    
-  return (
-    <>
-      <h1 className="text-2xl text-center text-lime-950">Text Filtration</h1>
-      <p className="text-xl text-center text-lime-800">
-        You can insert different text and find a unique character in a word
-      </p>
-      <form
+    return (
+           
+<div className="relative w-full p-10">
+  <h1 className="text-2xl text-center text-lime-950">Text Filtration</h1>
+  <p className="text-xl text-center text-lime-800">
+    You can insert different text and find a unique character in a word
+  </p>
+  <div className=" mt-4 absolute top-0 right-0 hidden sm:block ">
+    <img src="/paint.png" width={200} height={200} alt="" />
+  </div>
+            <form
         onSubmit={onSubmit}
         className="flex flex-col items-center justify-center p-10 w-full"
       >
@@ -58,8 +62,9 @@ const Form = () => {
 </button>
         
           </form>
+           {/* <img src="/paint.png" className='absolute top-0 right-2 z-0' width={300} height={300} alt="" /> */}
           <ResultCard result={result} />
-    </>
+  </div>
   );
 };
 export default Form;
