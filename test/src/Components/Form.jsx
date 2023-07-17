@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { fetchText } from "@/app/fetch/fetchText";
 import ResultCard from "./ResultCard"
 
@@ -8,7 +8,7 @@ import ResultCard from "./ResultCard"
 const Form = () => {
     const [text, setText] = useState("");
     const [result, setResult] = useState("");
-
+const imgRef = useRef(null);
   const onSubmit = async(e) => {
       e.preventDefault(); 
         if (text.trim() === "") {
@@ -30,7 +30,28 @@ const Form = () => {
       console.error(error);
     }
     };
-   
+//     const animationStyle = {
+//     animation: "moveImage 3s infinite",
+//   transformOrigin: "center",
+//   animationDirection: "alternate",
+//   animationIterationCount: "infinite",
+//   };
+   useEffect(() => {
+    const moveImage = () => {
+      if (imgRef.current) {
+        imgRef.current.style.transform = "translateX(-5px)";
+        setTimeout(() => {
+          imgRef.current.style.transform = "translateX(0)";
+        }, 3000);
+      }
+    };
+
+    const intervalId = setInterval(moveImage, 6000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
     return (
            
 <div className="relative w-full p-10">
@@ -38,8 +59,8 @@ const Form = () => {
   <p className="text-xl text-center text-lime-800">
     You can insert different text and find a unique character in a word
   </p>
-  <div className=" mt-4 absolute top-0 right-0 hidden sm:block ">
-    <img src="/paint.png" width={200} height={200} alt="" />
+  <div className=" mt-4 absolute top-0 right-0  hidden sm:block  ">
+    <img src="/paint.png" width={200} height={200} alt=""  id="moveImage" />
   </div>
             <form
         onSubmit={onSubmit}
